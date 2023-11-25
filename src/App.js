@@ -6,7 +6,7 @@ import { Box } from '@chakra-ui/react';
 
 function App() {
   return (
-    <Box   h="100vh" className="App">
+    <Box  padding={"10px"} minH="100vh" className="App">
       <Countries/>
     </Box>
   );

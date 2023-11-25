@@ -39,8 +39,8 @@ const Countries = () => {
     }
   };
 
-  console.log(countryflagcode)
-  console.log(countryData)
+  // console.log(countryflagcode)
+  // console.log(countryData)
   // const handleDebounce = (val) => {
   //   clearTimeout(intervalIdRef.current);
   //   intervalIdRef.current = setTimeout(() => {
@@ -99,7 +99,7 @@ const Countries = () => {
       </Box>
       {error ? (
         <Error />
-      ) : countryData.length !== 0 ? (
+      ) : countryData.length  ? (
         <Country countryData={countryData} countryflagcode={countryflagcode}/>
       ) : (
         ""

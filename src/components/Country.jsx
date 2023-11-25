@@ -42,7 +42,7 @@ const Country = ({ countryData, countryflagcode }) => {
     setSelectCountry(country);
     onOpen();
   };
-  console.log(selectCountry);
+  // console.log(selectCountry);
 
   return (
     <Box w="80%" m="30px auto">
