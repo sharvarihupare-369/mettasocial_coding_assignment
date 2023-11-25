@@ -3,17 +3,15 @@ import { Box, Grid, Heading, Image, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Error from "./Error";
 
-const Country = ({ countryData }) => {
+const Country = ({ countryData, countryflagcode }) => {
   // const [expanded, setExpanded] = React.useState(false);
-
- 
 
   const [expandedStates, setExpandedStates] = useState(
     new Array(countryData?.length).fill(false)
   );
 
-  if(!Array.isArray(countryData)){
-    return <Error/>
+  if (!Array.isArray(countryData)) {
+    return <Error />;
   }
 
   const handleExpandClick = (index) => {
@@ -67,6 +65,12 @@ const Country = ({ countryData }) => {
                       <Heading size="md" as="h4">
                         Region:{country?.region}
                       </Heading>
+                      <a
+                        style={{ fontSize: "20px", fontWeight: 700 }}
+                        href={country?.maps?.googleMaps}
+                      >
+                        Click here to see map!
+                      </a>
                     </>
                   )}
                 </Box>

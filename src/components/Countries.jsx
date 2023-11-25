@@ -7,6 +7,7 @@ import Error from "./Error";
 const Countries = () => {
   const [currency, setCurrency] = useState("");
   const [countryData, setCountryData] = useState([]);
+  const [countryflagcode,setCountryflagcode] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const toast = useToast();
@@ -18,9 +19,18 @@ const Countries = () => {
         `https://restcountries.com/v3.1/currency/${currency}`
       );
       let data = await res.json();
+     
+      setCountryData(data);
+
+
+      const flagCodeRes = await fetch(`https://flagcdn.com/en/codes.json`)
+      const flagcodeData = await flagCodeRes.json();
+
       setLoading(false);
       setError(false);
-      setCountryData(data);
+      setCountryflagcode(flagcodeData)
+
+
     } catch (error) {
       //   console.log(error);
       setError(true);
@@ -29,7 +39,8 @@ const Countries = () => {
     }
   };
 
-  
+  console.log(countryflagcode)
+  console.log(countryData)
   // const handleDebounce = (val) => {
   //   clearTimeout(intervalIdRef.current);
   //   intervalIdRef.current = setTimeout(() => {
@@ -89,7 +100,7 @@ const Countries = () => {
       {error ? (
         <Error />
       ) : countryData.length !== 0 ? (
-        <Country countryData={countryData} />
+        <Country countryData={countryData} countryflagcode={countryflagcode}/>
       ) : (
         ""
       )}
