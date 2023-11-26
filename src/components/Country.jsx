@@ -46,7 +46,7 @@ const Country = ({ countryData, countryflagcode }) => {
 
   return (
     <Box w="80%" m="30px auto">
-      <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+      <Grid templateColumns={{base:"repeat(1, 1fr)",sm:"repeat(1, 1fr)",md:"repeat(2, 1fr)",lg:"repeat(3, 1fr)",xl:"repeat(3, 1fr)","2xl":"repeat(3, 1fr)"}} gap={6}>
         {countryData?.map((country, ind) => {
           let isExpanded = expandedStates[ind];
           return (
@@ -100,6 +100,7 @@ const Country = ({ countryData, countryflagcode }) => {
                           {selectCountry && (
                             <Box
                               display={"flex"}
+                              flexDirection={{base:"column",sm:"column",md:"column",lg:"row",xl:"row","2xl":"row"}}
                               alignItems={"center"}
                               gap={"80px"}
                             >
