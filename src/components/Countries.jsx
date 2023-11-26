@@ -20,14 +20,14 @@ const Countries = () => {
       );
       let data = await res.json();
      
+      setLoading(false);
+      setError(false);
       setCountryData(data);
 
 
       const flagCodeRes = await fetch(`https://flagcdn.com/en/codes.json`)
       const flagcodeData = await flagCodeRes.json();
 
-      setLoading(false);
-      setError(false);
       setCountryflagcode(flagcodeData)
 
 
@@ -57,25 +57,21 @@ const Countries = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!currency) {
-      return toast({
-        title: "Please Enter currency",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-    }
+    e.preventDefault()
+    // if (!currency) {
+    //   return toast({
+    //     title: "Please Enter currency",
+    //     status: "error",
+    //     duration: 3000,
+    //     isClosable: true,
+    //     position: "top",
+    //   });
+    // }
     handleSearchCountryByCurrency(currency);
   };
 
   if (loading) {
     return <Loader />;
-  }
-
-  if (error) {
-    return <Error />;
   }
 
   return (
@@ -97,13 +93,9 @@ const Countries = () => {
           <Button type="submit" display={"none"}></Button>
         </form>
       </Box>
-      {error ? (
-        <Error />
-      ) : countryData.length  ? (
-        <Country countryData={countryData} countryflagcode={countryflagcode}/>
-      ) : (
-        ""
-      )}
+      {  !error  ?  <Country countryData={countryData} countryflagcode={countryflagcode}/> : <Error/>
+      }
+     
     </Box>
   );
 };
